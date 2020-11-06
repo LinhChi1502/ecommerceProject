@@ -3,20 +3,15 @@ package dao.impl;
 import dao.ProductDao;
 import jdbc.JDBCConnection;
 import model.Product;
-import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//private int productID;
-//private int shopID;
-//private String productName;
-//private String productImage;
-//private double productDescription;
 public class ProductDaoImpl implements ProductDao {
     Connection connection = JDBCConnection.getConnection();
-    private static final String SELECT_ALL_PRODUCTS = "{call select_all_products()}";
+    private static final String SELECT_ALL_PRODUCTS = "select * from products";
+    private static final String SELECT_10_FIRST_PRODUCTS = "select * from products";
 
 
     @Override
@@ -25,8 +20,8 @@ public class ProductDaoImpl implements ProductDao {
 
         try {
             products = new ArrayList<>();
-            CallableStatement callableStatement = connection.prepareCall(SELECT_ALL_PRODUCTS);
-            ResultSet rs = callableStatement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS);
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int productID = rs.getInt("productID");
                 int shopID = rs.getInt("shopID");
@@ -34,8 +29,9 @@ public class ProductDaoImpl implements ProductDao {
                 String productImage = rs.getString("productImage");
                 Double productPrice = rs.getDouble("productPrice");
                 String productDescription = rs.getString("productDescription");
+                String shopName = rs.getString("shopName");
                 Product product = new Product(productID, shopID, productName, productImage, productPrice,
-                        productDescription);
+                        productDescription, shopName);
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -43,8 +39,6 @@ public class ProductDaoImpl implements ProductDao {
         }
         return products;
     }
-
-
 
     @Override
     public void save(Product product) {

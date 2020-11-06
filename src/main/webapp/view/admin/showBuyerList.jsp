@@ -27,18 +27,11 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Admin Page</a>
+            <a class="navbar-brand" href="/back-to-admin-page">Admin Page</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="/show-buyer-list">Buyer List</a></li>
-            <%--      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>--%>
-            <%--        <ul class="dropdown-menu">--%>
-            <%--          <li><a href="#">Page 1-1</a></li>--%>
-            <%--          <li><a href="#">Page 1-2</a></li>--%>
-            <%--          <li><a href="#">Page 1-3</a></li>--%>
-            <%--        </ul>--%>
-            <%--      </li>--%>
-            <li><a href="#">Shop List</a></li>
+            <li><a href="/show-shop-list">Shop List</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/shopee"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -48,25 +41,32 @@
 
 <div class="container">
     <h3>BUYER LIST</h3>
-    <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-    <c:forEach items="${buyer}" var="l">
-        <table class="table">
-            <thead>
+    <br>
+    <table class="table table-striped">
+        <tr>
+            <th>Buyer ID</th>
+            <th>Buyer Email</th>
+            <th>Buyer Password</th>
+            <th>Buyer Phone Number</th>
+            <th>Buyer Name</th>
+        </tr>
+        <c:forEach items="${buyers}" var="buyer">
             <tr>
-                <th scope="col">${l.userID}</th>
-                <th scope="col">${l.userEmail}</th>
-                <th scope="col">${l.userPass}</th>
-                <th scope="col">${l.userRole}</th>
-                <th scope="col">${l.phoneNumber}</th>
-                <th scope="col">${l.userName}</th>
+                <td scope="col">${buyer.getUserID()}</td>
+                <td scope="col">${buyer.getUserEmail()}</td>
+                <td scope="col">${buyer.getUserPass()}</td>
+                <td scope="col">${buyer.getPhoneNumber()}</td>
+                <td scope="col">${buyer.getUserName()}</td>
             </tr>
-            </thead>
-        </table>
-    </c:forEach>
+        </c:forEach>
+    </table>
 </div>
-
 </body>
 </html>
+
+
+
+
 
 
 

@@ -3,30 +3,25 @@ package model;
 public class Shop {
     private int shopID;
     private String shopName;
-    private String address;
     private String shopEmail;
     private String shopPass;
+    private String address;
 
     public Shop() {
     }
 
-    public Shop(int shopID, String shopName, String address, String shopEmail, String shopPass) {
+    public Shop(String shopName, String shopEmail, String shopPass, String address) {
+        this.shopName = shopName;
+        this.shopEmail = shopEmail;
+        this.shopPass = shopPass;
+        this.address = address;
+    }
+
+    public Shop(int shopID, String shopName, String shopEmail, String shopPass, String address) {
         this.shopID = shopID;
         this.shopName = shopName;
-        this.address = address;
         this.shopEmail = shopEmail;
         this.shopPass = shopPass;
-    }
-
-    public Shop(String shopName, String address, String shopEmail, String shopPass) {
-        this.shopName = shopName;
-        this.address = address;
-        this.shopEmail = shopEmail;
-        this.shopPass = shopPass;
-    }
-
-    public Shop(String shopName, String address) {
-        this.shopName = shopName;
         this.address = address;
     }
 

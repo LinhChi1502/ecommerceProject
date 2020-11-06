@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="shopee"></a>
+<a href="/shopee"></a>
 </body>
 </html>

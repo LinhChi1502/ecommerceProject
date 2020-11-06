@@ -1,28 +1,34 @@
-model/User.java
- model.User
-dao/ProductDao.java
- dao.ProductDao
-model/Shop.java
- model.Shop
 model/Product.java
  model.Product
-controller/AddNewProduct.java
- controller.AddNewProduct
-jdbc/JDBCConnection.java
- jdbc.JDBCConnection
-controller/LoginController.java
- controller.LoginController
 dao/ShopDao.java
  dao.ShopDao
 dao/impl/UserDaoImpl.java
  dao.impl.UserDaoImpl
-dao/impl/ProductDaoImpl.java
- dao.impl.ProductDaoImpl
+dao/ProductDao.java
+ dao.ProductDao
+jdbc/JDBCConnection.java
+ jdbc.JDBCConnection
+model/Shop.java
+ model.Shop
+controller/AddNewProduct.java
+ controller.AddNewProduct
+model/User.java
+ model.User
 dao/UserDao.java
  dao.UserDao
+controller/LoginController.java
+ controller.LoginController
+controller/ShowShopList.java
+ controller.ShowShopList
+dao/impl/ProductDaoImpl.java
+ dao.impl.ProductDaoImpl
 controller/ShowBuyerList.java
  controller.ShowBuyerList
 dao/impl/ShopDaoImpl.java
  dao.impl.ShopDaoImpl
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
 controller/HomeServlet.java
  controller.HomeServlet
+controller/ShowProductList.java
+ controller.ShowProductList
