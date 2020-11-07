@@ -1,34 +1,58 @@
-model/Product.java
- model.Product
-dao/ShopDao.java
- dao.ShopDao
-dao/impl/UserDaoImpl.java
- dao.impl.UserDaoImpl
-dao/ProductDao.java
- dao.ProductDao
-jdbc/JDBCConnection.java
- jdbc.JDBCConnection
-model/Shop.java
- model.Shop
-controller/AddNewProduct.java
- controller.AddNewProduct
 model/User.java
  model.User
-dao/UserDao.java
- dao.UserDao
-controller/LoginController.java
- controller.LoginController
+controller/AddNewProduct.java
+ controller.AddNewProduct
+model/Shop.java
+ model.Shop
+model/Product.java
+ model.Product
+jdbc/JDBCConnection.java
+ jdbc.JDBCConnection
+dao/impl/IShopDaoImpl.java
+ dao.impl.IShopDaoImpl
 controller/ShowShopList.java
  controller.ShowShopList
-dao/impl/ProductDaoImpl.java
- dao.impl.ProductDaoImpl
+dao/IShopDao.java
+ dao.IShopDao
+controller/LoginController.java
+ controller.LoginController
+controller/SearchProductsByPriceHomepage.java
+ controller.SearchProductsByPriceHomepage
+controller/ShowProductDetails.java
+ controller.ShowProductDetails
+dao/IUserDao.java
+ dao.IUserDao
+dao/impl/IUserDaoImpl.java
+ dao.impl.IUserDaoImpl
+controller/BackToHomePage.java
+ controller.BackToHomePage
+controller/SearchProductsByNameHomepage.java
+ controller.SearchProductsByNameHomepage
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
+dao/impl/IProductDaoImpl.java
+ dao.impl.IProductDaoImpl
+controller/ShowProductDetailsHomepage.java
+ controller.ShowProductDetailsHomepage
+dao/impl/IPurchaseDaoImpl.java
+ dao.impl.IPurchaseDaoImpl
+dao/IPurchaseDao.java
+ dao.IPurchaseDao
+model/Purchase.java
+ model.Purchase
+dao/IProductDao.java
+ dao.IProductDao
+controller/BuyProduct.java
+ controller.BuyProduct
 controller/ShowBuyerList.java
  controller.ShowBuyerList
-dao/impl/ShopDaoImpl.java
- dao.impl.ShopDaoImpl
-controller/BackToAdminPage.java
- controller.BackToAdminPage
+controller/ShowBuyForm.java
+ controller.ShowBuyForm
 controller/HomeServlet.java
  controller.HomeServlet
-controller/ShowProductList.java
- controller.ShowProductList
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
+controller/SearchProductByName.java
+ controller.SearchProductByName
+controller/SearchProductsByPrice.java
+ controller.SearchProductsByPrice

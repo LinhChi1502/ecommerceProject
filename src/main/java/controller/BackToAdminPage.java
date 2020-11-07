@@ -1,9 +1,9 @@
 package controller;
 
-import dao.ShopDao;
-import dao.UserDao;
-import dao.impl.ShopDaoImpl;
-import dao.impl.UserDaoImpl;
+import dao.IShopDao;
+import dao.IUserDao;
+import dao.impl.IShopDaoImpl;
+import dao.impl.IUserDaoImpl;
 import model.Shop;
 import model.User;
 
@@ -20,11 +20,11 @@ import java.util.List;
 public class BackToAdminPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao = new UserDaoImpl();
-        ShopDao shopDao = new ShopDaoImpl();
-        List<User> buyerLimitList = userDao.listBuyerLimit10();
+        IUserDao IUserDao = new IUserDaoImpl();
+        IShopDao IShopDao = new IShopDaoImpl();
+        List<User> buyerLimitList = IUserDao.listBuyerLimit10();
         request.setAttribute("buyerLimitList", buyerLimitList);
-        List<Shop> shopLimitList = shopDao.listShopLimit10();
+        List<Shop> shopLimitList = IShopDao.listShopLimit10();
         request.setAttribute("shopLimitList", shopLimitList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/admin/adminPage.jsp");
         requestDispatcher.forward(request, response);
