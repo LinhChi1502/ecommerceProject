@@ -2,10 +2,13 @@ package controller;
 
 import dao.IProductDao;
 import dao.IPurchaseDao;
+import dao.IUserDao;
 import dao.impl.IProductDaoImpl;
 import dao.impl.IPurchaseDaoImpl;
+import dao.impl.IUserDaoImpl;
 import model.Product;
 import model.Purchase;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,17 +22,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "BuyProduct", urlPatterns = "/buy-product")
+@WebServlet(name = "Buy Product", urlPatterns = "/buy-product")
 public class BuyProduct extends HttpServlet {
 
-    IPurchaseDao purchaseDao = new IPurchaseDaoImpl();
     IProductDao productDao = new IProductDaoImpl();
+    IUserDao userDao = new IUserDaoImpl();
+    IPurchaseDao purchaseDao = new IPurchaseDaoImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productID = Integer.parseInt(request.getParameter("productid"));
         Product product = productDao.findProductById(productID);
         int purchaseQuantity = Integer.parseInt(request.getParameter("quantity"));
@@ -43,12 +43,16 @@ public class BuyProduct extends HttpServlet {
         Product updatedProduct = new Product(productID,shopID,productName,productImage,productPrice,productDescription,
                 shopName,leftQuantity);
         productDao.updateProductQuantity(updatedProduct);
+        request.setAttribute("product", updatedProduct);
+        request.setAttribute("message", "You bought this product successfully!");
 
-        int buyerID = Integer.parseInt(request.getParameter("buyerId"));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+        int buyerID = Integer.parseInt(request.getParameter("buyerid"));
+        String purchaseDate = request.getParameter("date");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
-            date = dateFormat.parse(request.getParameter("date"));
+            date = sdf.parse(purchaseDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -56,5 +60,20 @@ public class BuyProduct extends HttpServlet {
         Purchase purchase = new Purchase(productID, shopID, productName, productImage, productPrice, productDescription,
                 shopName, buyerID, date, purchaseQuantity);
         purchaseDao.addPurchase(purchase);
+        User buyer = userDao.findBuyerById(buyerID);
+        request.setAttribute("buyer", buyer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/buyer/showBuyForm.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int productID = Integer.parseInt(request.getParameter("productid"));
+        Product product = productDao.findProductById(productID);
+        int buyerID = Integer.parseInt(request.getParameter("buyerid"));
+        User buyer = userDao.findBuyerById(buyerID);
+        request.setAttribute("product", product);
+        request.setAttribute("buyer", buyer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/buyer/showBuyForm.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

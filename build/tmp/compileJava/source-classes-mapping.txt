@@ -28,31 +28,31 @@ controller/BackToHomePage.java
  controller.BackToHomePage
 controller/SearchProductsByNameHomepage.java
  controller.SearchProductsByNameHomepage
-controller/ShowPurchaseHistory.java
- controller.ShowPurchaseHistory
+controller/SearchProductByName.java
+ controller.SearchProductByName
 dao/impl/IProductDaoImpl.java
  dao.impl.IProductDaoImpl
 controller/ShowProductDetailsHomepage.java
  controller.ShowProductDetailsHomepage
-dao/impl/IPurchaseDaoImpl.java
- dao.impl.IPurchaseDaoImpl
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
 dao/IPurchaseDao.java
  dao.IPurchaseDao
 model/Purchase.java
  model.Purchase
 dao/IProductDao.java
  dao.IProductDao
-controller/BuyProduct.java
- controller.BuyProduct
+controller/BackToBuyerPage.java
+ controller.BackToBuyerPage
 controller/ShowBuyerList.java
  controller.ShowBuyerList
-controller/ShowBuyForm.java
- controller.ShowBuyForm
-controller/HomeServlet.java
- controller.HomeServlet
-controller/BackToAdminPage.java
- controller.BackToAdminPage
-controller/SearchProductByName.java
- controller.SearchProductByName
 controller/SearchProductsByPrice.java
  controller.SearchProductsByPrice
+controller/HomeServlet.java
+ controller.HomeServlet
+dao/impl/IPurchaseDaoImpl.java
+ dao.impl.IPurchaseDaoImpl
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
+controller/BuyProduct.java
+ controller.BuyProduct

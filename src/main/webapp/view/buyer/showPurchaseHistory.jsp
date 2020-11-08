@@ -136,16 +136,16 @@
 
 <%--HIỂN THỊ PURCHASE HISTORY--%>
 <div class="container">
-    <h3>BUYER LIST</h3>
+    <h3 style="text-align: center">PURCHASE HISTORY</h3>
     <br>
     <table class="table table-striped">
         <tr>
             <th>Purchase Date</th>
             <th>Product Name</th>
             <th>Product Description</th>
-            <th>Product Price</th>
+            <th>Product Price ($)</th>
             <th>Purchase Quantity</th>
-            <th>Total Amount</th>
+            <th>Total Amount ($)</th>
         </tr>
         <c:forEach items="${purchases}" var="purchase">
             <tr>
@@ -154,7 +154,7 @@
                 <td scope="col">${purchase.getProductDescription()}</td>
                 <td scope="col">${purchase.getProductPrice()}</td>
                 <td scope="col">${purchase.getPurchaseQuantity()}</td>
-                <td scope="col">${purchase.getPurchaseQuantity()}*${purchase.getProductPrice()}</td>
+                <td scope="col">${purchase.getPurchaseQuantity() * purchase.getProductPrice()}</td>
             </tr>
         </c:forEach>
     </table>

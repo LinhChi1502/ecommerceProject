@@ -19,7 +19,6 @@ import java.util.List;
 @WebServlet(name = "ShowPurchaseHistory", urlPatterns = "/show-purchase-history")
 public class ShowPurchaseHistory extends HttpServlet {
 
-    IUserDao userDao = new IUserDaoImpl();
     IPurchaseDao purchaseDao = new IPurchaseDaoImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -149,7 +149,7 @@
                     </div>
                     <div class="product-price">
                         <h3><span>$</span>${product.getProductPrice()}</h3>
-                        <a class="btn" href="/show-buy-form?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                        <a class="btn" href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                             <i class="fa fa-shopping-cart"></i>Buy Now</a>
                     </div>
                 </div>
