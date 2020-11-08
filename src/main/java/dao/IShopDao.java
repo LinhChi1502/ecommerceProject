@@ -14,4 +14,6 @@ public interface IShopDao {
     List<Product> listShopProduct(int shopID);
 
     Shop findShopById(int shopID);
+
+    void updateProduct(Product updatedProduct);
 }

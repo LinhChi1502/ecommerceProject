@@ -1,53 +1,47 @@
-model/User.java
- model.User
-controller/AddNewProduct.java
- controller.AddNewProduct
-model/Shop.java
- model.Shop
 model/Product.java
  model.Product
-jdbc/JDBCConnection.java
- jdbc.JDBCConnection
-controller/HomeServlet.java
- controller.HomeServlet
-model/Purchase.java
- model.Purchase
-controller/SearchProductsByPrice.java
- controller.SearchProductsByPrice
-controller/SearchProductByName.java
- controller.SearchProductByName
 controller/SearchProductsByPriceHomepage.java
  controller.SearchProductsByPriceHomepage
-controller/BackToBuyerPage.java
- controller.BackToBuyerPage
-dao/IUserDao.java
- dao.IUserDao
+controller/ShowProductDetails.java
+ controller.ShowProductDetails
 dao/impl/IUserDaoImpl.java
  dao.impl.IUserDaoImpl
 controller/BackToHomePage.java
  controller.BackToHomePage
-controller/SearchProductsByNameHomepage.java
- controller.SearchProductsByNameHomepage
-controller/ShowProductDetails.java
- controller.ShowProductDetails
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
 dao/impl/IProductDaoImpl.java
  dao.impl.IProductDaoImpl
 controller/ShowProductDetailsHomepage.java
  controller.ShowProductDetailsHomepage
+controller/BackToBuyerPage.java
+ controller.BackToBuyerPage
+model/Shop.java
+ model.Shop
+model/User.java
+ model.User
+model/Purchase.java
+ model.Purchase
 dao/IProductDao.java
  dao.IProductDao
-dao/IPurchaseDao.java
- dao.IPurchaseDao
-dao/impl/IPurchaseDaoImpl.java
- dao.impl.IPurchaseDaoImpl
 controller/BuyProduct.java
  controller.BuyProduct
-controller/ShowPurchaseHistory.java
- controller.ShowPurchaseHistory
-controller/BackToAdminPage.java
- controller.BackToAdminPage
-controller/ShowBuyerList.java
- controller.ShowBuyerList
+controller/SearchProductsByPrice.java
+ controller.SearchProductsByPrice
+controller/SearchProductByName.java
+ controller.SearchProductByName
+dao/IPurchaseDao.java
+ dao.IPurchaseDao
+jdbc/JDBCConnection.java
+ jdbc.JDBCConnection
+dao/IUserDao.java
+ dao.IUserDao
+controller/SearchProductsByNameHomepage.java
+ controller.SearchProductsByNameHomepage
+dao/impl/IPurchaseDaoImpl.java
+ dao.impl.IPurchaseDaoImpl
+controller/HomeServlet.java
+ controller.HomeServlet
 controller/LoginController.java
  controller.LoginController
 dao/IShopDao.java
@@ -56,5 +50,11 @@ controller/ShowShopList.java
  controller.ShowShopList
 dao/impl/IShopDaoImpl.java
  dao.impl.IShopDaoImpl
-controller/ShowProductDetailShop.java
- controller.ShowProductDetailShop
+controller/ShowProductDetailsShop.java
+ controller.ShowProductDetailsShop
+controller/ShowBuyerList.java
+ controller.ShowBuyerList
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
+controller/ShowEditForm.java
+ controller.ShowEditForm

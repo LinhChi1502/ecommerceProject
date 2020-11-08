@@ -314,7 +314,7 @@
 
 
 <%--điền thông báo ở đây--%>
-<div style="margin-left: 300px">
+<div style="margin-left: 300px; margin-top: 20px; font-size: large">
     <c:if test="${message != null}">
         <span style="color: red; font-size: large">${message}</span>
     </c:if>

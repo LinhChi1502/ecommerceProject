@@ -19,6 +19,7 @@ public class IShopDaoImpl implements IShopDao {
     private static final String SELECT_ALL_SHOP_PRODUCTS =
             "select * from products join shop s on s.shopID = products.shopID where s.shopID = ?";
     private static final String FIND_SHOP_BY_ID = "select * from shop where shopID = ?";
+    private static final String UPDATE_PRODUCT = "update products set productName = ?, productPrice = ?, productDescription = ?, productQuantity = ? where productID = ?";
     @Override
     public List<Shop> listShop() {
         List<Shop> shops = null;
@@ -109,5 +110,20 @@ public class IShopDaoImpl implements IShopDao {
             throwables.printStackTrace();
         }
         return shop;
+    }
+
+    @Override
+    public void updateProduct(Product updatedProduct) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(UPDATE_PRODUCT);
+            ps.setString(1, updatedProduct.getProductName());
+            ps.setDouble(2, updatedProduct.getProductPrice());
+            ps.setString(3, updatedProduct.getProductDescription());
+            ps.setInt(4, updatedProduct.getProductQuantity());
+            ps.setInt(5, updatedProduct.getProductID());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

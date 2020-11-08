@@ -132,8 +132,8 @@
                         <h3><span>$</span>${product.getProductPrice()}</h3>
                     </div>
                     <div>
-<%--                        <button type="button" class="btn btn-primary btn-sm">Edit</button>--%>
-<%--                        <button type="button" class="btn btn-primary btn-sm">Delete</button>--%>
+                        <a href="/show-edit-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="EDIT"></a>
+                        <a href="/show-delete-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="DELETE"></a>
                     </div>
                 </div>
             </div>
