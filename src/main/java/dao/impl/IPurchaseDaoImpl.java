@@ -21,7 +21,7 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
             "insert into purchase(productId, userId, date, purchaseQuantity) VALUE (?,?,?,?)";
 
     private static final String SELECT_ALL_PURCHASE_OF_BUYER =
-            "select *, (purchaseQuantity*productPrice) as total from purchase left join products p on p.productID = purchase.productId where userId = ?";
+            "select * from purchase left join products p on p.productID = purchase.productId where userId = ?";
 
     @Override
     public void addPurchase(Purchase purchase) {

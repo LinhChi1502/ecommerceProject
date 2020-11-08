@@ -75,9 +75,9 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
                     <div class="header-search">
-                        <form action="/search-products-by-name" method="get">
+                        <form action="/search-products-by-name?buyerid=${buyer.getUserID()}" method="post">
                             <input class="input" placeholder="Search by name" name="productName">
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -86,14 +86,14 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
                     <div class="header-search">
-                        <form action="/search-products-by-price">
+                        <form action="/search-products-by-price?buyerid=${buyer.getUserID()}" method="post">
 
                             <select style="width: 100px; height: 40px" name="range">
                                 <option value="0,50"><$50</option>
                                 <option value="50,500"><$50-$500</option>
                                 <option value="500,10000">>$500</option>
                             </select>
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -143,13 +143,15 @@
                         <a href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a>
                     </div>
                     <div class="product-image">
-                        <a href="/show-product-details?productid=${product.getProductID()}">
-                            <img style="width: 100px; height: 100px" src="${product.getProductImage()}" alt="Product Image">
+                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                            <img style="width: 100px; height: 100px" src="${product.getProductImage()}"
+                                 alt="Product Image">
                         </a>
                     </div>
                     <div class="product-price">
                         <h3><span>$</span>${product.getProductPrice()}</h3>
-                        <a class="btn" href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                        <a class="btn"
+                           href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                             <i class="fa fa-shopping-cart"></i>Buy Now</a>
                     </div>
                 </div>
@@ -185,13 +187,14 @@
                                 <c:forEach items="${products}" var="product">
                                     <div class="product">
                                         <a href="/show-product-details?productid=${product.getProductID()}">
-                                        <div class="product-img">
-                                            <img src="${product.getProductImage()}" alt="">
-                                        </div>
+                                            <div class="product-img">
+                                                <img src="${product.getProductImage()}" alt="">
+                                            </div>
                                         </a>
                                         <div class="product-body">
                                             <h3 class="product-name"><a
-                                                    href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a></h3>
+                                                    href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a>
+                                            </h3>
                                             <h4 class="product-price">${product.getProductPrice()}</h4>
                                         </div>
                                         <div class="add-to-cart">
@@ -216,7 +219,6 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
-
 
 
 <!-- FOOTER -->

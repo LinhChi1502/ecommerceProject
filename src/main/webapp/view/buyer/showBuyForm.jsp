@@ -1,49 +1,3 @@
-<%--&lt;%&ndash;--%>
-<%--  Created by IntelliJ IDEA.--%>
-<%--  User: adminn--%>
-<%--  Date: 11/7/2020--%>
-<%--  Time: 7:27 PM--%>
-<%--  To change this template use File | Settings | File Templates.--%>
-<%--&ndash;%&gt;--%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-<%--    <title>Show Buy Form</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<form>--%>
-<%--    <div class="form-group">--%>
-<%--        <label>${product.getProductName()}</label>--%>
-<%--        <input class="form-control input-sm"  type="text" name="productName" disabled>--%>
-<%--    </div>--%>
-<%--    <div class="form-group">--%>
-<%--        <label >${product.getProductPrice()}</label>--%>
-<%--        <input class="form-control"  type="text" name="productPrice" disabled>--%>
-<%--    </div>--%>
-<%--    <div class="form-group">--%>
-<%--        <label >${product.getProductDescription()}</label>--%>
-<%--        <input class="form-control input-lg"  type="text" name="productDes" disabled>--%>
-<%--    </div>--%>
-<%--    <div class="form-group">--%>
-<%--        <label >${product.getShopName()}</label>--%>
-<%--        <input class="form-control input-lg"  type="text" name="shopName" disabled>--%>
-<%--    </div>--%>
-<%--    <div class="form-group">--%>
-<%--        <label >Purchase Quantity</label>--%>
-<%--        <input class="form-control input-lg" type="text" name="quantity">--%>
-<%--    </div>--%>
-<%--    <div class="form-group">--%>
-<%--        <label >Purchase Date</label>--%>
-<%--        <input class="form-control input-lg"  type="text" name="date">--%>
-<%--    </div>--%>
-<%--    <div><a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}}"><input type="submit" value="BUY NOW"></a></div>--%>
-
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
-
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -295,9 +249,11 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
                     <div class="header-search">
-                        <form action="/search-products-by-name">
+                        <form action="/search-products-by-name?buyerid=${buyer.getUserID()}" method="post">
+                            <input type="text" name="buyerid" hidden>
+
                             <input class="input" placeholder="Search by name" name="productName">
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -306,14 +262,15 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
                     <div class="header-search">
-                        <form action="/search-products-by-price">
+                        <form action="/search-products-by-price?buyerid=${buyer.getUserID()}" method="post">
+                            <input type="text" name="buyerid" hidden>
 
                             <select style="width: 100px; height: 40px" name="range">
                                 <option value="0,50"><$50</option>
-                                <option value="50,500" name="range"><$50-$500</option>
-                                <option value="500,10000" name="range">>$500</option>
+                                <option value="50,500"><$50-$500</option>
+                                <option value="500,10000">>$500</option>
                             </select>
-                            <button class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -357,7 +314,7 @@
 
 
 <%--điền thông báo ở đây--%>
-<div style="align-content: center">
+<div style="margin-left: 300px">
     <c:if test="${message != null}">
         <span style="color: red; font-size: large">${message}</span>
     </c:if>

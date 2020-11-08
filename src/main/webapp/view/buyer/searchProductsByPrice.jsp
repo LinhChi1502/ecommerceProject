@@ -75,9 +75,10 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
                     <div class="header-search">
-                        <form action="/search-products-by-name">
+                        <form action="/search-products-by-name?buyerid=${buyer.getUserID()}">
+                            <input type="text" name="buyerid" hidden>
                             <input class="input" placeholder="Search by name" name="productName">
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -86,14 +87,15 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
                     <div class="header-search">
-                        <form action="/search-products-by-price">
+                        <form action="/search-products-by-price?buyerid=${buyer.getUserID()}" method="post">
+                            <input type="text" name="buyerid" hidden>
 
                             <select style="width: 100px; height: 40px" name="range">
                                 <option value="0,50"><$50</option>
-                                <option value="50,500" name="range"><$50-$500</option>
-                                <option value="500,10000" name="range">>$500</option>
+                                <option value="50,500"><$50-$500</option>
+                                <option value="500,10000">>$500</option>
                             </select>
-                            <button class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -103,7 +105,7 @@
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <i class="fa fa-shopping-cart" style="color: red"></i>
-                        <a href="phai lam dien link history"><span style="color: red">Your purchase history</span></a>
+                        <a href="/show-purchase-history?buyerid=${buyer.getUserID()}"><span style="color: red">Your purchase history</span></a>
 
                         <!-- /Menu Toogle -->
                     </div>
@@ -144,165 +146,20 @@
                         <a href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a>
                     </div>
                     <div class="product-image">
-                        <a href="/show-product-details?productid=${product.getProductID()}">
+                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                             <img style="width: 100px; height: 100px" src="${product.getProductImage()}" alt="Product Image">
                         </a>
                     </div>
                     <div class="product-price">
                         <h3><span>$</span>${product.getProductPrice()}</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                        <a class="btn" href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
 </div>
-<!-- /container -->
-<%--</div>--%>
-<!-- /SECTION -->
 
-<!-- /product -->
-
-<%--                                <!-- product -->--%>
-<%--                                <div class="product">--%>
-<%--                                    <div class="product-img">--%>
-<%--                                        <img src="img/product02.png" alt="">--%>
-<%--                                        <div class="product-label">--%>
-<%--                                            <span class="new">NEW</span>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="product-body">--%>
-<%--                                        <p class="product-category">Category</p>--%>
-<%--                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>--%>
-<%--                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-<%--                                        <div class="product-rating">--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star-o"></i>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-btns">--%>
-<%--                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>--%>
-<%--                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>--%>
-<%--                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="add-to-cart">--%>
-<%--                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <!-- /product -->--%>
-
-<%--                                <!-- product -->--%>
-<%--                                <div class="product">--%>
-<%--                                    <div class="product-img">--%>
-<%--                                        <img src="img/product03.png" alt="">--%>
-<%--                                        <div class="product-label">--%>
-<%--                                            <span class="sale">-30%</span>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="product-body">--%>
-<%--                                        <p class="product-category">Category</p>--%>
-<%--                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>--%>
-<%--                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-<%--                                        <div class="product-rating">--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-btns">--%>
-<%--                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>--%>
-<%--                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>--%>
-<%--                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="add-to-cart">--%>
-<%--                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <!-- /product -->--%>
-
-<%--                                <!-- product -->--%>
-<%--                                <div class="product">--%>
-<%--                                    <div class="product-img">--%>
-<%--                                        <img src="img/product04.png" alt="">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="product-body">--%>
-<%--                                        <p class="product-category">Category</p>--%>
-<%--                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>--%>
-<%--                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-<%--                                        <div class="product-rating">--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-btns">--%>
-<%--                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>--%>
-<%--                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>--%>
-<%--                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="add-to-cart">--%>
-<%--                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <!-- /product -->--%>
-
-<%--                                <!-- product -->--%>
-<%--                                <div class="product">--%>
-<%--                                    <div class="product-img">--%>
-<%--                                        <img src="img/product04.png" alt="">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="product-body">--%>
-<%--                                        <p class="product-category">Category</p>--%>
-<%--                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>--%>
-<%--                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-<%--                                        <div class="product-rating">--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-btns">--%>
-<%--                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>--%>
-<%--                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>--%>
-<%--                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="add-to-cart">--%>
-<%--                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <!-- /product -->--%>
-
-<%--                                <!-- product -->--%>
-<%--                                <div class="product">--%>
-<%--                                    <div class="product-img">--%>
-<%--                                        <img src="img/product05.png" alt="">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="product-body">--%>
-<%--                                        <p class="product-category">Category</p>--%>
-<%--                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>--%>
-<%--                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-<%--                                        <div class="product-rating">--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                            <i class="fa fa-star"></i>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="product-btns">--%>
-<%--                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>--%>
-<%--                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>--%>
-<%--                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="add-to-cart">--%>
-<%--                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <!-- /product -->--%>
 
 
 <!-- SECTION -->
@@ -342,8 +199,10 @@
                                             <h4 class="product-price">${product.getProductPrice()}</h4>
                                         </div>
                                         <div class="add-to-cart">
+                                            <a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY NOW
                                             </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </c:forEach>

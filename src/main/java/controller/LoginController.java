@@ -22,11 +22,12 @@ import java.util.List;
 @WebServlet(name = "LoginController", urlPatterns = "/logincontroller")
 public class LoginController extends HttpServlet {
 
+    IUserDao IUserDao = new IUserDaoImpl();
+    IShopDao IShopDao = new IShopDaoImpl();
+    IProductDao productDao = new IProductDaoImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IUserDao IUserDao = new IUserDaoImpl();
-        IShopDao IShopDao = new IShopDaoImpl();
-        IProductDao productDao = new IProductDaoImpl();
+
         List<User> users = IUserDao.listUser();
         List<Shop> shops = IShopDao.listShop();
         String email = request.getParameter("useremail");
@@ -53,12 +54,14 @@ public class LoginController extends HttpServlet {
                 }
             }
         }
+
         for (Shop shop: shops) {
             if (shop.getShopEmail().equals(email) && shop.getShopPass().equals(pass)) {
-                request.setAttribute("shopOwner", shop);
-                request.setAttribute("shopOwner", shop);
-
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shopOwner/shopOwnerPage.jsp");
+                int shopID = shop.getShopID();
+                List<Product> shopProducts = IShopDao.listShopProduct(shopID);
+                request.setAttribute("shop", shop);
+                request.setAttribute("shopProducts", shopProducts);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shop/shopPage.jsp");
                 requestDispatcher.forward(request, response);
             }
         }

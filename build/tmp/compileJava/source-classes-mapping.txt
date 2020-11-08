@@ -8,18 +8,18 @@ model/Product.java
  model.Product
 jdbc/JDBCConnection.java
  jdbc.JDBCConnection
-dao/impl/IShopDaoImpl.java
- dao.impl.IShopDaoImpl
-controller/ShowShopList.java
- controller.ShowShopList
-dao/IShopDao.java
- dao.IShopDao
-controller/LoginController.java
- controller.LoginController
+controller/HomeServlet.java
+ controller.HomeServlet
+model/Purchase.java
+ model.Purchase
+controller/SearchProductsByPrice.java
+ controller.SearchProductsByPrice
+controller/SearchProductByName.java
+ controller.SearchProductByName
 controller/SearchProductsByPriceHomepage.java
  controller.SearchProductsByPriceHomepage
-controller/ShowProductDetails.java
- controller.ShowProductDetails
+controller/BackToBuyerPage.java
+ controller.BackToBuyerPage
 dao/IUserDao.java
  dao.IUserDao
 dao/impl/IUserDaoImpl.java
@@ -28,31 +28,33 @@ controller/BackToHomePage.java
  controller.BackToHomePage
 controller/SearchProductsByNameHomepage.java
  controller.SearchProductsByNameHomepage
-controller/SearchProductByName.java
- controller.SearchProductByName
+controller/ShowProductDetails.java
+ controller.ShowProductDetails
 dao/impl/IProductDaoImpl.java
  dao.impl.IProductDaoImpl
 controller/ShowProductDetailsHomepage.java
  controller.ShowProductDetailsHomepage
-controller/BackToAdminPage.java
- controller.BackToAdminPage
-dao/IPurchaseDao.java
- dao.IPurchaseDao
-model/Purchase.java
- model.Purchase
 dao/IProductDao.java
  dao.IProductDao
-controller/BackToBuyerPage.java
- controller.BackToBuyerPage
-controller/ShowBuyerList.java
- controller.ShowBuyerList
-controller/SearchProductsByPrice.java
- controller.SearchProductsByPrice
-controller/HomeServlet.java
- controller.HomeServlet
+dao/IPurchaseDao.java
+ dao.IPurchaseDao
 dao/impl/IPurchaseDaoImpl.java
  dao.impl.IPurchaseDaoImpl
-controller/ShowPurchaseHistory.java
- controller.ShowPurchaseHistory
 controller/BuyProduct.java
  controller.BuyProduct
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
+controller/ShowBuyerList.java
+ controller.ShowBuyerList
+controller/LoginController.java
+ controller.LoginController
+dao/IShopDao.java
+ dao.IShopDao
+controller/ShowShopList.java
+ controller.ShowShopList
+dao/impl/IShopDaoImpl.java
+ dao.impl.IShopDaoImpl
+controller/ShowProductDetailShop.java
+ controller.ShowProductDetailShop

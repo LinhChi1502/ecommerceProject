@@ -20,6 +20,7 @@ import java.util.List;
 public class ShowPurchaseHistory extends HttpServlet {
 
     IPurchaseDao purchaseDao = new IPurchaseDaoImpl();
+    IUserDao userDao = new IUserDaoImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -27,7 +28,9 @@ public class ShowPurchaseHistory extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int buyerID = Integer.parseInt(request.getParameter("buyerid"));
+        User buyer = userDao.findBuyerById(buyerID);
         List<Purchase> purchases = purchaseDao.listAllPurchaseOfBuyer(buyerID);
+        request.setAttribute("buyer", buyer);
         request.setAttribute("purchases", purchases);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/buyer/showPurchaseHistory.jsp");
         requestDispatcher.forward(request, response);

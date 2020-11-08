@@ -78,9 +78,11 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
                     <div class="header-search">
-                        <form action="/search-products-by-name" method="get">
+                        <form action="/search-products-by-name?buyerid=${buyer.getUserID()}" method="post">
+                            <input type="text" name="buyerid" hidden>
+
                             <input class="input" placeholder="Search by name" name="productName">
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
@@ -89,14 +91,15 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
                     <div class="header-search">
-                        <form action="/search-products-by-price">
+                        <form action="/search-products-by-price?buyerid=${buyer.getUserID()}" method="post">
+                            <input type="text" name="buyerid" hidden>
 
                             <select style="width: 100px; height: 40px" name="range">
                                 <option value="0,50"><$50</option>
                                 <option value="50,500"><$50-$500</option>
                                 <option value="500,10000">>$500</option>
                             </select>
-                            <button type="submit" class="search-btn">Search</button>
+                            <input type="submit" class="search-btn" value="Search">
                         </form>
                     </div>
                 </div>
