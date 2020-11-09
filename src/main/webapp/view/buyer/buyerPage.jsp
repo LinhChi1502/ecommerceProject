@@ -264,8 +264,7 @@
                                 <!-- product -->
                                 <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
-                                        <a href="/show-product-details?productid=${product.getProductID()}&buyer
-                                        id=${buyer.getUserID()}">
+                                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                                             <div class="product-img">
                                                 <img src="${product.getProductImage()}" alt="">
                                             </div>
