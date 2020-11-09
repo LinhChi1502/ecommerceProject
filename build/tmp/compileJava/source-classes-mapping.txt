@@ -8,10 +8,10 @@ controller/HomeServlet.java
  controller.HomeServlet
 model/Purchase.java
  model.Purchase
-dao/impl/IPurchaseDaoImpl.java
- dao.impl.IPurchaseDaoImpl
-dao/IPurchaseDao.java
- dao.IPurchaseDao
+controller/DeleteProduct.java
+ controller.DeleteProduct
+controller/ShowProductDetailsShop.java
+ controller.ShowProductDetailsShop
 jdbc/JDBCConnection.java
  jdbc.JDBCConnection
 controller/ShowProductDetailsHomepage.java
@@ -36,12 +36,12 @@ controller/ShowRegisterForm.java
  controller.ShowRegisterForm
 controller/ShowProductDetails.java
  controller.ShowProductDetails
-controller/BuyProduct.java
- controller.BuyProduct
+controller/LoginController.java
+ controller.LoginController
 dao/IUserDao.java
  dao.IUserDao
-controller/ShowPurchaseHistory.java
- controller.ShowPurchaseHistory
+controller/ShowBuyerList.java
+ controller.ShowBuyerList
 controller/SearchProductByName.java
  controller.SearchProductByName
 controller/CreateProduct.java
@@ -56,8 +56,8 @@ controller/ShowProductList.java
  controller.ShowProductList
 controller/CreateBuyer.java
  controller.CreateBuyer
-controller/ShowRevenueForm.java
- controller.ShowRevenueForm
+controller/CreateShop.java
+ controller.CreateShop
 controller/BackToShopPage.java
  controller.BackToShopPage
 controller/ShowDeleteForm.java
@@ -66,13 +66,13 @@ dao/IShopDao.java
  dao.IShopDao
 dao/impl/IShopDaoImpl.java
  dao.impl.IShopDaoImpl
-controller/DeleteProduct.java
- controller.DeleteProduct
-controller/ShowProductDetailsShop.java
- controller.ShowProductDetailsShop
-controller/ShowBuyerList.java
- controller.ShowBuyerList
-controller/LoginController.java
- controller.LoginController
-controller/CreateShop.java
- controller.CreateShop
+dao/IPurchaseDao.java
+ dao.IPurchaseDao
+controller/BuyProduct.java
+ controller.BuyProduct
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
+controller/ShowRevenueForm.java
+ controller.ShowRevenueForm
+dao/impl/IPurchaseDaoImpl.java
+ dao.impl.IPurchaseDaoImpl

@@ -10,5 +10,7 @@ public interface IPurchaseDao {
 
     List<Purchase> listAllPurchaseOfBuyer(int buyerID);
 
-    List<Purchase> listShopPurchase(int shopID, String startDateStr, String endDateStr);
+    List<Purchase> listShopPurchaseByTime(int shopID, String startDateStr, String endDateStr);
+
+    List<Purchase> listShopPurchase(int shopID);
 }

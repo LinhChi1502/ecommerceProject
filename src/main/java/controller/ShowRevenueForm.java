@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "ShowRevenueForm", urlPatterns = "/show-revenue-form")
@@ -30,7 +27,7 @@ public class ShowRevenueForm extends HttpServlet {
 
         int shopID = Integer.parseInt(request.getParameter("shopid"));
         Shop shop = shopDao.findShopById(shopID);
-        List<Purchase> purchases = purchaseDao.listShopPurchase(shopID, startDateStr, endDateStr);
+        List<Purchase> purchases = purchaseDao.listShopPurchaseByTime(shopID, startDateStr, endDateStr);
         request.setAttribute("purchases", purchases);
         request.setAttribute("shop", shop);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shop/showShopRevenue.jsp");
@@ -42,6 +39,8 @@ public class ShowRevenueForm extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int shopID = Integer.parseInt(request.getParameter("shopid"));
         Shop shop = shopDao.findShopById(shopID);
+        List<Purchase> shopPurchases = purchaseDao.listShopPurchase(shopID);
+        request.setAttribute("shopPurchases", shopPurchases);
         request.setAttribute("shop", shop);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shop/showRevenueForm.jsp");
         requestDispatcher.forward(request,response);

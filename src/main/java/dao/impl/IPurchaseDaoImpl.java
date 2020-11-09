@@ -2,8 +2,8 @@ package dao.impl;
 
 import dao.IPurchaseDao;
 import jdbc.JDBCConnection;
+import model.Product;
 import model.Purchase;
-import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,8 +23,12 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
     private static final String SELECT_ALL_PURCHASE_OF_BUYER =
             "select * from purchase left join products p on p.productID = purchase.productId where userId = ?";
 
-    private static final String LIST_SHOP_PURCHASE =
+    private static final String LIST_SHOP_PURCHASE_BY_TIME =
             "select * from purchase join products p on p.productID = purchase.productId where shopID = ? and date >= ? and date < ?";
+
+
+    private static final String LIST_SHOP_PURCHASE =
+            "select * from purchase join products p on p.productID = purchase.productId where shopID = ?";
 
     @Override
     public void addPurchase(Purchase purchase) {
@@ -82,7 +86,7 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
     }
 
     @Override
-    public List<Purchase> listShopPurchase(int shopID, String startDateStr, String endDateStr) {
+    public List<Purchase> listShopPurchaseByTime(int shopID, String startDateStr, String endDateStr) {
         List<Purchase> purchases = null;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -98,10 +102,9 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        PreparedStatement ps = null;
         try {
             purchases = new ArrayList<>();
-            ps = connection.prepareStatement(LIST_SHOP_PURCHASE);
+            PreparedStatement ps = connection.prepareStatement(LIST_SHOP_PURCHASE_BY_TIME);
             ps.setInt(1, shopID);
             String formatStartDate = sdf.format(startDate);
             Date parseStart = sdf.parse(formatStartDate);
@@ -135,6 +138,36 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
             e.printStackTrace();
         }
         return purchases;
+    }
+
+    @Override
+    public List<Purchase> listShopPurchase(int shopID) {
+        List<Purchase> shopPurchases = null;
+        try {
+            shopPurchases = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement(LIST_SHOP_PURCHASE);
+            ps.setInt(1, shopID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int purchaseID = rs.getInt("purchaseId");
+                int productID = rs.getInt("p.productID");
+                String productName = rs.getString("productName");
+                String productImage = rs.getString("productImage");
+                Double productPrice = rs.getDouble("productPrice");
+                String productDescription = rs.getString("productDescription");
+                String shopName = rs.getString("shopName");
+                int userId = rs.getInt("userId");
+                Date date = rs.getDate("date");
+                int purchaseQuantity = rs.getInt("purchaseQuantity");
+                Purchase purchase = new Purchase(productID, shopID, productName, productImage, productPrice, productDescription,
+                        shopName, userId, date, purchaseQuantity);
+                shopPurchases.add(purchase);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return shopPurchases;
     }
 }
 
