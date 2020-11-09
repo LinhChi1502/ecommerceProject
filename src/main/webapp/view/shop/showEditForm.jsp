@@ -246,17 +246,13 @@
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">CREATE NEW
-                        PRODUCT
-                    </button>
+                    <a href="/create-product?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-lg" style="background-color: red" value="CREATE NEW PRODUCT"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">YOUR PRODUCT
-                        LIST
-                    </button>
+                    <a href="/show-product-list?shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-lg" style="background-color: red" value="YOUR PRODUCT LIST"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 

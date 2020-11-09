@@ -1,60 +1,78 @@
-model/Product.java
- model.Product
-controller/SearchProductsByPriceHomepage.java
- controller.SearchProductsByPriceHomepage
-controller/ShowProductDetails.java
- controller.ShowProductDetails
-dao/impl/IUserDaoImpl.java
- dao.impl.IUserDaoImpl
-controller/BackToHomePage.java
- controller.BackToHomePage
-controller/ShowPurchaseHistory.java
- controller.ShowPurchaseHistory
 dao/impl/IProductDaoImpl.java
  dao.impl.IProductDaoImpl
-controller/ShowProductDetailsHomepage.java
- controller.ShowProductDetailsHomepage
-controller/BackToBuyerPage.java
- controller.BackToBuyerPage
-model/Shop.java
- model.Shop
 model/User.java
  model.User
+controller/BackToHomePage.java
+ controller.BackToHomePage
+controller/HomeServlet.java
+ controller.HomeServlet
 model/Purchase.java
  model.Purchase
-dao/IProductDao.java
- dao.IProductDao
-controller/BuyProduct.java
- controller.BuyProduct
-controller/SearchProductsByPrice.java
- controller.SearchProductsByPrice
-controller/SearchProductByName.java
- controller.SearchProductByName
+dao/impl/IPurchaseDaoImpl.java
+ dao.impl.IPurchaseDaoImpl
 dao/IPurchaseDao.java
  dao.IPurchaseDao
 jdbc/JDBCConnection.java
  jdbc.JDBCConnection
-dao/IUserDao.java
- dao.IUserDao
+controller/ShowProductDetailsHomepage.java
+ controller.ShowProductDetailsHomepage
+model/Shop.java
+ model.Shop
+model/Product.java
+ model.Product
 controller/SearchProductsByNameHomepage.java
  controller.SearchProductsByNameHomepage
-dao/impl/IPurchaseDaoImpl.java
- dao.impl.IPurchaseDaoImpl
-controller/HomeServlet.java
- controller.HomeServlet
-controller/LoginController.java
- controller.LoginController
-dao/IShopDao.java
- dao.IShopDao
+dao/IProductDao.java
+ dao.IProductDao
+controller/SearchProductsByPriceHomepage.java
+ controller.SearchProductsByPriceHomepage
+controller/SearchProductsByPrice.java
+ controller.SearchProductsByPrice
+controller/BackToBuyerPage.java
+ controller.BackToBuyerPage
+dao/impl/IUserDaoImpl.java
+ dao.impl.IUserDaoImpl
+controller/ShowRegisterForm.java
+ controller.ShowRegisterForm
+controller/ShowProductDetails.java
+ controller.ShowProductDetails
+controller/BuyProduct.java
+ controller.BuyProduct
+dao/IUserDao.java
+ dao.IUserDao
+controller/ShowPurchaseHistory.java
+ controller.ShowPurchaseHistory
+controller/SearchProductByName.java
+ controller.SearchProductByName
+controller/CreateProduct.java
+ controller.CreateProduct
+controller/BackToAdminPage.java
+ controller.BackToAdminPage
 controller/ShowShopList.java
  controller.ShowShopList
+controller/ShowEditForm.java
+ controller.ShowEditForm
+controller/ShowProductList.java
+ controller.ShowProductList
+controller/CreateBuyer.java
+ controller.CreateBuyer
+controller/ShowRevenueForm.java
+ controller.ShowRevenueForm
+controller/BackToShopPage.java
+ controller.BackToShopPage
+controller/ShowDeleteForm.java
+ controller.ShowDeleteForm
+dao/IShopDao.java
+ dao.IShopDao
 dao/impl/IShopDaoImpl.java
  dao.impl.IShopDaoImpl
+controller/DeleteProduct.java
+ controller.DeleteProduct
 controller/ShowProductDetailsShop.java
  controller.ShowProductDetailsShop
 controller/ShowBuyerList.java
  controller.ShowBuyerList
-controller/BackToAdminPage.java
- controller.BackToAdminPage
-controller/ShowEditForm.java
- controller.ShowEditForm
+controller/LoginController.java
+ controller.LoginController
+controller/CreateShop.java
+ controller.CreateShop

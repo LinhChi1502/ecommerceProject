@@ -358,11 +358,11 @@
                     <h5>
                         <input type="date" name="date" placeholder="Enter date">
                     </h5>
-<%--                    <a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">--%>
+                    <a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                         <div class="action">
                             <input class="add-to-cart btn btn-default" type="submit" value="BUY NOW">
                         </div>
-<%--                    </a>--%>
+                    </a>
                 </div>
                 </form>
             </div>
@@ -398,7 +398,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
                                         <div class="product-img">
                                             <img src="${product.getProductImage()}" alt="">
@@ -407,7 +407,7 @@
                                             <h3 class="product-name">${product.getProductName()}</h3>
                                             <h4 class="product-price">${product.getProductPrice()}</h4>
                                         </div>
-                                        <a href="logincontroller">
+                                        <a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                                             <div class="add-to-cart">
                                                 <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY NOW
                                                 </button>

@@ -241,13 +241,13 @@
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">CREATE NEW PRODUCT</button>
+                    <a href="/create-product?shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-lg" style="background-color: red" value="CREATE NEW PRODUCT"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">YOUR PRODUCT LIST</button>
+                    <a href="/show-product-list?shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-lg" style="background-color: red" value="YOUR PRODUCT LIST"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 
@@ -279,8 +279,6 @@
 <!-- /NAVIGATION -->
 
 <%--hiên thi thong tin san pham--%>
-
-
 <div class="container" style="width: 50%; height: 50%; margin-bottom: 200px" >
     <div class="card">
         <div class="container-fliud">
@@ -302,10 +300,12 @@
                         <span>
                             ${product.getProductQuantity()}</span>
                     </h5>
+                    <c:if test="${product.getProductID() > 0}">
                     <div>
-                        <button type="button" class="btn btn-primary btn-sm">EDIT</button>
-                        <button type="button" class="btn btn-primary btn-sm">DELETE</button>
+                        <a href="/show-edit-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="EDIT"></a>
+                        <a href="/show-delete-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="STOP SELLING"></a>
                     </div>
+                    </c:if>
                 </div>
             </div>
         </div>

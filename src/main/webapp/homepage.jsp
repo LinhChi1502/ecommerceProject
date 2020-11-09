@@ -51,7 +51,7 @@
             <ul class="header-links pull-right">
 
                 <li><a href="logincontroller"><i class="fa fa-user-o"></i> Login</a></li>
-                <li><a href="/register.jsp"><i class="fa fa-user-o"></i>Register</a></li>
+                <li><a href="/show-register-form"><i class="fa fa-user-o"></i>Register</a></li>
             </ul>
         </div>
     </div>
@@ -139,24 +139,53 @@
                         <div class="products-slick" data-nav="#slick-nav-1">
                             <!-- product -->
                             <c:forEach items="${products}" var="product">
-                                <div class="product">
-                                    <a href="/show-product-details-homepage?productid=${product.getProductID()}">
-                                        <div class="product-img">
-                                            <img src="${product.getProductImage()}" alt="">
-                                        </div>
-                                    </a>
-                                    <div class="product-body">
-                                        <h3 class="product-name">
-                                            <a href="/show-product-details-homepage?productid=${product.getProductID()}">${product.getProductName()}</a></h3>
-                                        <h4 class="product-price">${product.getProductPrice()}</h4>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a href="logincontroller">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY NOW
-                                            </button>
+                                <%--                                bat dau neu so luong = 0--%>
+                                <c:if test="${product.getProductQuantity() == 0}">
+                                    <div class="product">
+                                        <a href="/show-product-details-homepage?productid=${product.getProductID()}">
+                                            <div class="product-img">
+                                                <img src="${product.getProductImage()}" alt="">
+                                            </div>
                                         </a>
+                                        <div class="product-body">
+                                            <h3 class="product-name">
+                                                <a href="/show-product-details-homepage?productid=${product.getProductID()}">${product.getProductName()}</a>
+                                            </h3>
+                                            <h4 class="product-price">${product.getProductPrice()}</h4>
+                                        </div>
+                                        <div class="product-body">
+                                            <span style="color: red">Out of stock</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
+                                <%--                                ket thuc neu so luong = 0--%>
+
+
+                                <%--                                bat dau neu so luong > 0--%>
+                                <c:if test="${product.getProductQuantity() > 0}">
+                                    <div class="product">
+                                        <a href="/show-product-details-homepage?productid=${product.getProductID()}">
+                                            <div class="product-img">
+                                                <img src="${product.getProductImage()}" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="product-body">
+                                            <h3 class="product-name">
+                                                <a href="/show-product-details-homepage?productid=${product.getProductID()}">${product.getProductName()}</a>
+                                            </h3>
+                                            <h4 class="product-price">${product.getProductPrice()}</h4>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="logincontroller">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY
+                                                    NOW
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <%--                                ket thuc neu so luong >0--%>
+
                             </c:forEach>
                         </div>
                         <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -241,7 +270,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
                                         <a href="/show-product-details-homepage?productid=${product.getProductID()}">
                                             <div class="product-img">

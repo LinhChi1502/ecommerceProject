@@ -74,19 +74,28 @@
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">CREATE NEW PRODUCT</button>
+                    <a href="/create-product?shopid=${shop.getShopID()}"><input type="submit"
+                                                                                class="btn btn-primary btn-lg"
+                                                                                style="background-color: red"
+                                                                                value="CREATE NEW PRODUCT"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 
                 <!-- SEARCH BAR -->
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">YOUR PRODUCT LIST</button>
+                    <a href="/show-product-list?shopid=${shop.getShopID()}"><input type="submit"
+                                                                                   class="btn btn-primary btn-lg"
+                                                                                   style="background-color: red"
+                                                                                   value="YOUR PRODUCT LIST"></a>
                 </div>
                 <!-- /SEARCH BAR -->
 
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: red">REVENUE</button>
+                    <a href="/show-revenue-form?shopid=${shop.getShopID()}"><input type="submit"
+                                                                                   class="btn btn-primary btn-lg"
+                                                                                   style="background-color: red"
+                                                                                   value="REVENUE"></a>
                 </div>
                 <!-- /ACCOUNT -->
             </div>
@@ -114,32 +123,77 @@
 <!-- SECTION -->
 <%--<div class="section">--%>
 <!-- container -->
-<div class="container">
-    <div class="row">
-        <c:forEach items="${shopProducts}" var="product">
-            <div class="col-md-3" style="margin-bottom: 50px">
-                <div class="product-item">
-                    <div class="product-title" style="text-transform: uppercase; font-weight: bold; font-size: large">
-                        <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">${product.getProductName()}</a>
-                    </div>
-                    <div class="product-image">
-                        <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">
-                            <img style="width: 100px; height: 100px" src="${product.getProductImage()}"
-                                 alt="Product Image">
-                        </a>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>${product.getProductPrice()}</h3>
-                    </div>
-                    <div>
-                        <a href="/show-edit-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="EDIT"></a>
-                        <a href="/show-delete-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input type="submit" class="btn btn-primary btn-sm"  value="DELETE"></a>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
+<c:if test="${shopProducts.size() == 0}">
+    <div><span style="margin: auto; color: red; font-size: x-large; font-weight: bold;margin-left: 300px">YOUR SHOP HAS NO PRODUCT!</span>
     </div>
-</div>
+</c:if>
+
+
+<c:if test="${shopProducts.size() > 0}">
+    <div class="container">
+        <div class="row">
+            <c:forEach items="${shopProducts}" var="product">
+
+                <%--            neu san pham co so luong = 0--%>
+                <c:if test="${product.getProductQuantity() == 0}">
+                    <div class="col-md-3" style="margin-bottom: 50px">
+                        <div class="product-item">
+                            <div class="product-title"
+                                 style="text-transform: uppercase; font-weight: bold; font-size: large">
+                                <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">${product.getProductName()}</a>
+                            </div>
+                            <div class="product-image">
+                                <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">
+                                    <img style="width: 100px; height: 100px" src="${product.getProductImage()}"
+                                         alt="Product Image">
+                                </a>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>${product.getProductPrice()} <span
+                                        style="color: red">Out of stock</span></h3>
+                            </div>
+                            <div>
+                                <a href="/show-edit-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input
+                                        type="submit" class="btn btn-primary btn-sm" value="EDIT"></a>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <%--            ket thuc san pham co so luong = 0--%>
+
+                <%--            neu san pham co so luong > 0--%>
+                <c:if test="${product.getProductQuantity() > 0}">
+
+                    <div class="col-md-3" style="margin-bottom: 50px">
+                        <div class="product-item">
+                            <div class="product-title"
+                                 style="text-transform: uppercase; font-weight: bold; font-size: large">
+                                <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">${product.getProductName()}</a>
+                            </div>
+                            <div class="product-image">
+                                <a href="/show-product-details-shop?productid=${product.getProductID()}&shopid=${shop.getShopID()}">
+                                    <img style="width: 100px; height: 100px" src="${product.getProductImage()}"
+                                         alt="Product Image">
+                                </a>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>${product.getProductPrice()}</h3>
+                            </div>
+                            <div>
+                                <a href="/show-edit-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input
+                                        type="submit" class="btn btn-primary btn-sm" value="EDIT"></a>
+                                <a href="/show-delete-form?productid=${product.getProductID()}&shopid=${shop.getShopID()}"><input
+                                        type="submit" class="btn btn-primary btn-sm" value="STOP SELLING"></a>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <%--            ket thuc san pham co so luong > 0--%>
+            </c:forEach>
+        </div>
+    </div>
+</c:if>
+
 
 <!-- SECTION -->
 <div class="section">
@@ -165,7 +219,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
                                         <a href="/show-product-details?productid=${product.getProductID()}">
                                             <div class="product-img">

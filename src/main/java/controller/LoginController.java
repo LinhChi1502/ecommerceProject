@@ -49,6 +49,8 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("buyer", user);
                     List<Product> products = productDao.listAllProduct();
                     request.setAttribute("products", products);
+                    List<Product> topProducts = productDao.listTopProduct();
+                    request.setAttribute("topProducts", topProducts);
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/buyer/buyerPage.jsp");
                     requestDispatcher.forward(request, response);
                 }
@@ -58,7 +60,7 @@ public class LoginController extends HttpServlet {
         for (Shop shop: shops) {
             if (shop.getShopEmail().equals(email) && shop.getShopPass().equals(pass)) {
                 int shopID = shop.getShopID();
-                List<Product> shopProducts = IShopDao.listShopProduct(shopID);
+                List<Product> shopProducts = IShopDao.list8Products(shopID);
                 request.setAttribute("shop", shop);
                 request.setAttribute("shopProducts", shopProducts);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shop/shopPage.jsp");

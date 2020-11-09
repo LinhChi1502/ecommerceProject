@@ -12,4 +12,8 @@ public interface IUserDao {
      List<User> listBuyerLimit10();
 
      User findBuyerById(int buyerID);
+
+    void saveBuyer(User buyer);
+
+    User findBuyerByEmail(String buyerEmail);
 }

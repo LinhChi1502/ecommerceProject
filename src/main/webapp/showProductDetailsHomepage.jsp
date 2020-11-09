@@ -296,6 +296,46 @@
 <%--<div class="section">--%>
 <!-- container -->
 <%--điền chi tiết thông tin sản phẩm vào đây???????????????????????????????????--%>
+
+
+<%--bat dau neu sp do so luong = 0--%>
+<c:if test="${product.getProductQuantity() == 0}">
+<div class="container" style="width: 50%; height: 50%; margin-bottom: 200px" >
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active"><img src="${product.getProductImage()}" /></div>
+                    </div>
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">${product.getProductName()}</h3>
+
+                    <p class="product-description">${product.getProductDescription()}</p>
+                    <h4 class="price">price: <span>${product.getProductPrice()}</span></h4>
+
+                    <h5 class="sizes">shop name:
+                        <span class="size" data-toggle="tooltip" title="small">${product.getShopName()}</span>
+                    </h5>
+                    <br>
+                    <h5 class="colors">
+                        <span style="color: red">
+                            Out of stock</span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</c:if>
+<%--ket thuc neu sp do so luong = 0--%>
+
+
+<%--bat dau neu sp do co so luong > 0--%>
+<c:if test="${product.getProductQuantity() > 0}">
 <div class="container" style="width: 50%; height: 50%; margin-bottom: 200px" >
     <div class="card">
         <div class="container-fliud">
@@ -321,15 +361,18 @@
                             ${product.getProductQuantity()}</span>
                     </h5>
                     <a href="logincontroller">
-                    <div class="action">
-                        <button class="add-to-cart btn btn-default" type="submit">Buy Now</button>
-                    </div>
+                        <div class="action">
+                            <button class="add-to-cart btn btn-default" type="submit">Buy Now</button>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</c:if>
+<%--ket thuc neu sp do co so luong > 0--%>
+
 <%--kết thúc chi tiết thông tin sản phầm????????????????????????????????????????????--%>
 <!-- /container -->
 <%--</div>--%>
@@ -359,7 +402,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
                                         <div class="product-img">
                                             <img src="${product.getProductImage()}" alt="">

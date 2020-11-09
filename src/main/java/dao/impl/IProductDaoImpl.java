@@ -15,7 +15,8 @@ public class IProductDaoImpl implements IProductDao {
     private static final String FIND_PRODUCTS_BY_PRICE = "select * from products where productPrice > ? and productPrice <= ?";
     private static final String FIND_PRODUCT_BY_ID = "select * from products where productID = ?";
     private static final String UPDATE_PRODUCT_QUANTITY = "update products set productQuantity = ? where productID = ?";
-
+    private static final String LIST_TOP_PRODUCT =
+            "select *, SUM(purchaseQuantity) as total from products join purchase p on products.productID = p.productId group by products.productID order by SUM(purchaseQuantity) desc limit 5";
 
     @Override
     public List<Product> listAllProduct() {
@@ -49,9 +50,9 @@ public class IProductDaoImpl implements IProductDao {
         Product product = null;
         try {
             PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_ID);
-            statement.setInt(1,productID);
+            statement.setInt(1, productID);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int shopID = resultSet.getInt(2);
                 String productName = resultSet.getString(3);
                 String productImage = resultSet.getString(4);
@@ -59,7 +60,7 @@ public class IProductDaoImpl implements IProductDao {
                 String productDescription = resultSet.getString(6);
                 String shopName = resultSet.getString(7);
                 int productQuantity = resultSet.getInt(8);
-                product = new Product(productID,shopID,productName,productImage,productPrice,productDescription,
+                product = new Product(productID, shopID, productName, productImage, productPrice, productDescription,
                         shopName, productQuantity);
             }
         } catch (SQLException throwables) {
@@ -92,7 +93,7 @@ public class IProductDaoImpl implements IProductDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    return products;
+        return products;
     }
 
     @Override
@@ -101,10 +102,10 @@ public class IProductDaoImpl implements IProductDao {
         try {
             products = new ArrayList<>();
             PreparedStatement ps = connection.prepareStatement(FIND_PRODUCTS_BY_PRICE);
-            ps.setDouble(1,firstPrice);
-            ps.setDouble(2,secondPrice);
+            ps.setDouble(1, firstPrice);
+            ps.setDouble(2, secondPrice);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 int productId = rs.getInt(1);
                 int shopID = rs.getInt(2);
                 String productName = rs.getString(3);
@@ -113,7 +114,7 @@ public class IProductDaoImpl implements IProductDao {
                 String productDescription = rs.getString(6);
                 String shopName = rs.getString(7);
                 int productQuantity = rs.getInt(8);
-                Product product = new Product(productId,shopID,productName,productImage,productPrice,productDescription,
+                Product product = new Product(productId, shopID, productName, productImage, productPrice, productDescription,
                         shopName, productQuantity);
                 products.add(product);
             }
@@ -134,5 +135,31 @@ public class IProductDaoImpl implements IProductDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Product> listTopProduct() {
+        List<Product> topProducts = null;
+        try {
+            topProducts = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement(LIST_TOP_PRODUCT);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int productID = rs.getInt("p.productid");
+                int shopID = rs.getInt("shopID");
+                String productName = rs.getString("productName");
+                String productImage = rs.getString("productImage");
+                double productPrice = rs.getDouble("productPrice");
+                String productDescription = rs.getString("productDescription");
+                String shopName = rs.getString("shopName");
+                int productQuantity = rs.getInt("productQuantity");
+                Product product = new Product(productID, shopID, productName, productImage, productPrice,
+                        productDescription, shopName, productQuantity);
+                topProducts.add(product);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return topProducts;
     }
 }

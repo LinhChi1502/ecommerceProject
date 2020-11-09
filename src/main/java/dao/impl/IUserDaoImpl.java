@@ -17,6 +17,8 @@ public class IUserDaoImpl implements IUserDao {
     private static final String SELECT_ALL_BUYERS = "select * from users where userRole = 'buyer'";
     private static final String SELECT_ALL_BUYERS_LIMIT_10 = "select * from users where userRole = 'buyer' limit 10";
     private static final String FIND_BUYER_BY_ID = "select * from users where userRole = 'buyer' and userID = ?";
+    private static final String CREATE_ACCOUNT = "INSERT INTO users ( userEmail, userPass, userRole, phoneNumber,userName) VALUE (?,?,?,?,?)";
+    private static final String FIND_BUYER_BY_EMAIL = "select * from users where userRole = 'buyer' and userEmail = ?";
 
     @Override
     public List<User> listUser() {
@@ -102,6 +104,42 @@ public class IUserDaoImpl implements IUserDao {
                 String phoneNumber = rs.getString("phoneNumber");
                 String userName = rs.getString("userName");
                 buyer = new User(buyerID, userEmail, userPass, userRole, phoneNumber, userName);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return buyer;
+    }
+
+    @Override
+    public void saveBuyer(User buyer) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(CREATE_ACCOUNT);
+            ps.setString(1, buyer.getUserEmail());
+            ps.setString(2, buyer.getUserPass());
+            ps.setString(3, buyer.getUserRole());
+            ps.setString(4, buyer.getPhoneNumber());
+            ps.setString(5, buyer.getUserName());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public User findBuyerByEmail(String buyerEmail) {
+        User buyer = null;
+        try {
+            PreparedStatement ps = connection.prepareStatement(FIND_BUYER_BY_EMAIL);
+            ps.setString(1, buyerEmail);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int userID = rs.getInt("userId");
+                String userPass = rs.getString("userPass");
+                String userRole = rs.getString("userRole");
+                String phoneNumber = rs.getString("phoneNumber");
+                String userName = rs.getString("userName");
+                buyer = new User(userID, buyerEmail, userPass, userRole, phoneNumber, userName);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

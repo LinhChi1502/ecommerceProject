@@ -15,4 +15,6 @@ public interface IProductDao {
     List<Product> findProductsByPrice(double firstPrice, double secondPrice);
 
     void updateProductQuantity(Product product);
+
+    List<Product> listTopProduct();
 }

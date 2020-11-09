@@ -134,31 +134,109 @@
 <!-- SECTION -->
 <%--<div class="section">--%>
 <!-- container -->
+
+<%--???????????????????????????????????????????????????????????????????????--%>
+<%--<div class="container">--%>
+<%--    <div class="row">--%>
+<%--        <c:forEach items="${products}" var="product">--%>
+<%--            <div class="col-md-3" style="margin-bottom: 50px">--%>
+<%--                <div class="product-item">--%>
+<%--                    <div class="product-title" style="text-transform: uppercase; font-weight: bold; font-size: large">--%>
+<%--                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">${product.getProductName()}</a>--%>
+<%--                    </div>--%>
+<%--                    <div class="product-image">--%>
+<%--                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">--%>
+<%--                            <img style="width: 100px; height: 100px" src="${product.getProductImage()}"--%>
+<%--                                 alt="Product Image">--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                    <div class="product-price">--%>
+<%--                        <h3><span>$</span>${product.getProductPrice()}</h3>--%>
+<%--                        <a class="btn"--%>
+<%--                           href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">--%>
+<%--                            <i class="fa fa-shopping-cart"></i>Buy Now</a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:forEach>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--?????????????????????????????????????????????????????????????????????????????????????--%>
+
 <div class="container">
+    <!-- row -->
     <div class="row">
-        <c:forEach items="${products}" var="product">
-            <div class="col-md-3" style="margin-bottom: 50px">
-                <div class="product-item">
-                    <div class="product-title" style="text-transform: uppercase; font-weight: bold; font-size: large">
-                        <a href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a>
+        <!-- Products tab & slick -->
+        <div class="col-md-12">
+            <div class="row">
+                <div class="products-tabs">
+                    <!-- tab -->
+                    <div id="tab1" class="tab-pane active">
+                        <div class="products-slick" data-nav="#slick-nav-1">
+                            <!-- product -->
+                            <c:forEach items="${products}" var="product">
+                                <%--                                bat dau neu so luong = 0--%>
+                                <c:if test="${product.getProductQuantity() == 0}">
+                                    <div class="product">
+                                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                                            <div class="product-img">
+                                                <img src="${product.getProductImage()}" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="product-body">
+                                            <h3 class="product-name">
+                                                <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">${product.getProductName()}</a>
+                                            </h3>
+                                            <h4 class="product-price">${product.getProductPrice()}</h4>
+                                        </div>
+                                        <div class="product-body">
+                                            <span style="color: red">Out of stock</span>
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <%--                                ket thuc neu so luong = 0--%>
+
+
+                                <%--                                bat dau neu so luong > 0--%>
+                                <c:if test="${product.getProductQuantity() > 0}">
+                                    <div class="product">
+                                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                                            <div class="product-img">
+                                                <img src="${product.getProductImage()}" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="product-body">
+                                            <h3 class="product-name">
+                                                <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">${product.getProductName()}</a>
+                                            </h3>
+                                            <h4 class="product-price">${product.getProductPrice()}</h4>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY
+                                                    NOW
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <%--                                ket thuc neu so luong >0--%>
+
+                            </c:forEach>
+                        </div>
+                        <div id="slick-nav-1" class="products-slick-nav"></div>
                     </div>
-                    <div class="product-image">
-                        <a href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
-                            <img style="width: 100px; height: 100px" src="${product.getProductImage()}"
-                                 alt="Product Image">
-                        </a>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>${product.getProductPrice()}</h3>
-                        <a class="btn"
-                           href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
-                            <i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
+                    <!-- /tab -->
+                    <%--                    </div>--%>
+                    <%--                </div>--%>
                 </div>
+                <!-- Products tab & slick -->
             </div>
-        </c:forEach>
+            <!-- /row -->
+        </div>
     </div>
 </div>
+
 
 <!-- SECTION -->
 <div class="section">
@@ -184,20 +262,21 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
-                                        <a href="/show-product-details?productid=${product.getProductID()}">
+                                        <a href="/show-product-details?productid=${product.getProductID()}&buyer
+                                        id=${buyer.getUserID()}">
                                             <div class="product-img">
                                                 <img src="${product.getProductImage()}" alt="">
                                             </div>
                                         </a>
                                         <div class="product-body">
                                             <h3 class="product-name"><a
-                                                    href="/show-product-details?productid=${product.getProductID()}">${product.getProductName()}</a>
+                                                    href="/show-product-details?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">${product.getProductName()}</a>
                                             </h3>
                                             <h4 class="product-price">${product.getProductPrice()}</h4>
                                         </div>
-                                        <div class="add-to-cart">
+                                        <div class="add-to-cart" href="/buy-product?productid=${product.getProductID()}&buyerid=${buyer.getUserID()}">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>BUY NOW
                                             </button>
                                         </div>

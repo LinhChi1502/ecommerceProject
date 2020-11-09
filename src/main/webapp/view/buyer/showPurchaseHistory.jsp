@@ -137,33 +137,54 @@
 </nav>
 <!-- /NAVIGATION -->
 
-<%--HIỂN THỊ PURCHASE HISTORY--%>
-<div class="container">
-    <h3 style="text-align: center">PURCHASE HISTORY</h3>
-    <br>
-    <table class="table table-striped">
-        <tr>
-            <th>Purchase Date</th>
-            <th>Product Name</th>
-            <th>Product Description</th>
-            <th>Product Price ($)</th>
-            <th>Purchase Quantity</th>
-            <th>Total Amount ($)</th>
-        </tr>
-        <c:forEach items="${purchases}" var="purchase">
-            <tr>
-                <td scope="col">${purchase.getDate()}</td>
-                <td scope="col">${purchase.getProductName()}</td>
-                <td scope="col">${purchase.getProductDescription()}</td>
-                <td scope="col">${purchase.getProductPrice()}</td>
-                <td scope="col">${purchase.getPurchaseQuantity()}</td>
-                <td scope="col">${purchase.getPurchaseQuantity() * purchase.getProductPrice()}</td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
 
-<%--KẾT THÚC PURCHASE HISTORY--%>
+<%--nếu danh sách trống--%>
+<c:if test="${purchases.size() == 0}">
+    <div class="container">
+        <h3 style="text-align: center">PURCHASE HISTORY</h3>
+        <br>
+        <div>
+            <span style="font-weight: bold; color: red; margin-left: 300px">YOU BOUGHT NOTHING BEFORE!</span>
+        </div>
+    </div>
+</c:if>
+
+
+<%--kết thúc nếu danh sách trống--%>
+
+
+
+<%--nếu danh sách không trống--%>
+<c:if test="${purchases.size() > 0}">
+    <div class="container">
+        <h3 style="text-align: center">PURCHASE HISTORY</h3>
+        <br>
+        <table class="table table-striped">
+            <tr>
+                <th>Purchase Date</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Price ($)</th>
+                <th>Purchase Quantity</th>
+                <th>Total Amount ($)</th>
+            </tr>
+            <c:forEach items="${purchases}" var="purchase">
+                <tr>
+                    <td scope="col">${purchase.getDate()}</td>
+                    <td scope="col">${purchase.getProductName()}</td>
+                    <td scope="col">${purchase.getProductDescription()}</td>
+                    <td scope="col">${purchase.getProductPrice()}</td>
+                    <td scope="col">${purchase.getPurchaseQuantity()}</td>
+                    <td scope="col">${purchase.getPurchaseQuantity() * purchase.getProductPrice()}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</c:if>
+<%--nếu danh sách không trống kết thúc--%>
+
+
+
 
 <!-- FOOTER -->
 <footer id="footer">

@@ -186,7 +186,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- product -->
                                 <!-- product -->
-                                <c:forEach items="${products}" var="product">
+                                <c:forEach items="${topProducts}" var="product">
                                     <div class="product">
                                         <a href="/show-product-details?productid=${product.getProductID()}">
                                         <div class="product-img">

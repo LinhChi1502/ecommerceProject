@@ -25,6 +25,16 @@ public class Product {
         this.productQuantity = productQuantity;
     }
 
+    public Product(int shopID, String productName, String productImage, double productPrice, String productDescription, String shopName, int productQuantity) {
+        this.shopID = shopID;
+        this.productName = productName;
+        this.productImage = productImage;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
+        this.shopName = shopName;
+        this.productQuantity = productQuantity;
+    }
+
     public int getProductID() {
         return productID;
     }

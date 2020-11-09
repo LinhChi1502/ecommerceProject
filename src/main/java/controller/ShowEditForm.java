@@ -24,6 +24,8 @@ public class ShowEditForm extends HttpServlet {
         Product product = productDao.findProductById(productID);
 
         int shopID = product.getShopID();
+        Shop shop = shopDao.findShopById(shopID);
+
         String productName = request.getParameter("productName");
         String productImage = product.getProductImage();
         double productPrice = Double.parseDouble(request.getParameter("productPrice"));
@@ -33,6 +35,7 @@ public class ShowEditForm extends HttpServlet {
         Product updatedProduct = new Product(productID,shopID,productName,productImage,productPrice,productDescription,
                 shopName,productQuantity);
         shopDao.updateProduct(updatedProduct);
+        request.setAttribute("shop", shop);
         request.setAttribute("product", updatedProduct);
         request.setAttribute("message", "Product was updated successfully");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/shop/showEditForm.jsp");

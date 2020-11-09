@@ -23,6 +23,9 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
     private static final String SELECT_ALL_PURCHASE_OF_BUYER =
             "select * from purchase left join products p on p.productID = purchase.productId where userId = ?";
 
+    private static final String LIST_SHOP_PURCHASE =
+            "select * from purchase join products p on p.productID = purchase.productId where shopID = ? and date >= ? and date < ?";
+
     @Override
     public void addPurchase(Purchase purchase) {
         try {
@@ -77,4 +80,61 @@ public class IPurchaseDaoImpl implements IPurchaseDao {
         }
         return purchases;
     }
+
+    @Override
+    public List<Purchase> listShopPurchase(int shopID, String startDateStr, String endDateStr) {
+        List<Purchase> purchases = null;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        try {
+            startDate = sdf.parse(startDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date endDate = null;
+        try {
+            endDate = sdf.parse(endDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        PreparedStatement ps = null;
+        try {
+            purchases = new ArrayList<>();
+            ps = connection.prepareStatement(LIST_SHOP_PURCHASE);
+            ps.setInt(1, shopID);
+            String formatStartDate = sdf.format(startDate);
+            Date parseStart = sdf.parse(formatStartDate);
+            java.sql.Date sqlStartDate = new java.sql.Date(parseStart.getTime());
+            ps.setDate(2, sqlStartDate);
+
+            String formatEndDate = sdf.format(endDate);
+            Date parseEnd = sdf.parse(formatEndDate);
+            java.sql.Date sqlEndDate = new java.sql.Date(parseEnd.getTime());
+            ps.setDate(3, sqlEndDate);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int purchaseID = rs.getInt("purchaseId");
+                int productID = rs.getInt("p.productID");
+                String productName = rs.getString("productName");
+                String productImage = rs.getString("productImage");
+                Double productPrice = rs.getDouble("productPrice");
+                String productDescription = rs.getString("productDescription");
+                String shopName = rs.getString("shopName");
+                int userId = rs.getInt("userId");
+                Date date = rs.getDate("date");
+                int purchaseQuantity = rs.getInt("purchaseQuantity");
+                Purchase purchase = new Purchase(productID, shopID, productName, productImage, productPrice, productDescription,
+                        shopName, userId, date, purchaseQuantity);
+                purchases.add(purchase);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return purchases;
+    }
 }
+
