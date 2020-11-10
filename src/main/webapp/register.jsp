@@ -169,9 +169,9 @@
 <div class="login-page">
     <div class="form">
         <form class="login-form" action="/create-buyer">
-            <input type="text" placeholder="userEmail" name="userEmail" required/>
-            <input type="password" placeholder="userPass" name="userPass" required/>
-            <input type="text" placeholder="phoneNumber" name="phoneNumber" required/>
+            <input type="email" placeholder="userEmail" name="userEmail" required/>
+            <input type="password" minlength="6" placeholder="userPass" name="userPass" required/>
+            <input type="number" minlength="6" placeholder="phoneNumber" name="phoneNumber" required/>
             <input type="text" placeholder="userName" name="userName" required/>
 
             <input type="submit" class="login100-form-btn" value="Create Account">
@@ -180,8 +180,8 @@
 
         <form class=register-form action="/create-shop">
             <input type="text" name="shopName" placeholder="shopName" required/>
-            <input type="text" name="shopEmail" placeholder="shopEmail" required/>
-            <input type="password" type="shopPass" name="shopPass" placeholder="Password" required/>
+            <input type="email" name="shopEmail" placeholder="shopEmail" required/>
+            <input type="password" minlength="6" type="shopPass" name="shopPass" placeholder="Password" required/>
             <input type="text" name="address" placeholder="address" required/>
 
             <input type="submit" class="login100-form-btn" value="Create Shop">
